@@ -4,45 +4,38 @@
 import java.util.*;
 import java.lang.*;
 
-class qs_16
-{
+import java.util.Scanner;
+
+class qs_16 {
     // function which returns
     // True or False for
     // occurrence of a vowel
-    static boolean myfunction(char c)
-    {
-        // this compares vowel
-        // with character 'c'
-        return (c != 'a') && (c != 'e') &&
-                (c != 'i') && (c != 'o') &&
-                (c != 'u');
+    static boolean isVowel(char c) {
+        // compare lowercase vowel
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
 
     // function to print
     // resultant string
-    static void removeVowels(String str)
-    {
-        // print 1st character
-        System.out.print(str.charAt(0));
+    static void removeConsecutiveVowels(String str) {
+        StringBuilder result = new StringBuilder();
+        result.append(str.charAt(0));
 
-        // loop to check for
-        // each character
-        for (int i = 1;
-             i < str.length(); i++)
+        for (int i = 1; i < str.length(); i++) {
+            if (!isVowel(str.charAt(i - 1)) || !isVowel(str.charAt(i))) {
+                result.append(str.charAt(i));
+            }
+        }
 
-            // comparison of
-            // consecutive characters
-            if ((myfunction(str.charAt(i - 1))) ||
-                    (myfunction(str.charAt(i))))
-                System.out.print(str.charAt(i));
+        System.out.println(result.toString());
     }
 
     // Driver Code
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String str = sc.next();
-        removeVowels(str);
+        String str = sc.nextLine();
+        removeConsecutiveVowels(str);
     }
 }
+
 
